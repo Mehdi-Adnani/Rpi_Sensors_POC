@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\geometry{margin=1in}
+\title{DHT Sensor Documentation - Raspberry Pi 5 Integration}
+\author{El Mehdi Adnani Kadmiri}
+\date{July 17, 2025}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Description}
+	The DHT sensor (e.g., DHT11 or DHT22) is used for measuring temperature and humidity. It includes a thermistor and a capacitive humidity sensor to generate calibrated digital output.
+	
+	\section{Applications}
+	\begin{itemize}
+		\item Weather stations
+		\item Home automation
+		\item Greenhouse monitoring
+		\item IoT environmental sensing
+	\end{itemize}
+	
+	\section{Working Principle}
+	The DHT sensor measures temperature and humidity and sends the data as a digital signal via a single data pin. The sensor requires specific timing to read the data signal, which is parsed into two values: temperature and humidity.
+	
+	\section{Wiring Diagram}
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{DHT Pin} & \textbf{Raspberry Pi Pin} & \textbf{Function} \\
+			\hline
+			VCC & 3.3V or 5V & Power \\
+			GND & GND & Ground \\
+			DATA & GPIO4 & Data Signal \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\section{Libraries Used}
+	\subsection*{Python: Adafruit\_DHT}
+	This library simplifies interaction with DHT sensors.
+	\begin{itemize}
+		\item Install via pip: \texttt{pip install Adafruit-DHT}
+		\item Usage: \texttt{humidity, temperature = Adafruit\_DHT.read\_retry(sensor, pin)}
+	\end{itemize}
+	
+	\subsection*{C: WiringPi and Custom Protocol}
+	There is no official WiringPi support; bit-banging and timing logic are used in custom C implementations.
+	\begin{itemize}
+		\item GPIO access: \texttt{wiringPiSetupGpio()}
+		\item Signal parsing: Requires microsecond timing
+	\end{itemize}
+	
+	\section{Python Code Example}
+	\begin{lstlisting}[language=Python]
+		import Adafruit_DHT
+		
+		sensor = Adafruit_DHT.DHT11
+		pin = 4
+		
+		humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+		
+		if humidity is not None and temperature is not None:
+		print(f"Temp={temperature:.1f}C  Humidity={humidity:.1f}%")
+		else:
+		print("Sensor failure. Check wiring.")
+	\end{lstlisting}
+	
+	\section{C Code Example}
+	\begin{lstlisting}[language=C]
+		#include <wiringPi.h>
+		#include <stdio.h>
+		#include <stdlib.h>
+		#include <stdint.h>
+		
+		#define MAX_TIMINGS 85
+		#define DHT_PIN 4
+		
+		int data[5] = {0,0,0,0,0};
+		
+		void read_dht_data() {
+			uint8_t laststate = HIGH;
+			uint8_t counter = 0;
+			uint8_t j = 0, i;
+			
+			data[0] = data[1] = data[2] = data[3] = data[4] = 0;
+			
+			pinMode(DHT_PIN, OUTPUT);
+			digitalWrite(DHT_PIN, LOW);
+			delay(18);
+			digitalWrite(DHT_PIN, HIGH);
+			delayMicroseconds(40);
+			pinMode(DHT_PIN, INPUT);
+			
+			for (i = 0; i < MAX_TIMINGS; i++) {
+				counter = 0;
+				while (digitalRead(DHT_PIN) == laststate) {
+					counter++;
+					delayMicroseconds(1);
+					if (counter == 255)
+					break;
+				}
+				laststate = digitalRead(DHT_PIN);
+				if (counter == 255) break;
+				if ((i >= 4) && (i % 2 == 0)) {
+					data[j / 8] <<= 1;
+					if (counter > 16) data[j / 8] |= 1;
+					j++;
+				}
+			}
+			
+			if ((j >= 40) && (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF))) {
+				float humidity = data[0];
+				float temperature = data[2];
+				printf("Humidity = %.1f %% Temperature = %.1f *C\n", humidity, temperature);
+			} else {
+				printf("Data not good, skip\n");
+			}
+		}
+		
+		int main(void) {
+			if (wiringPiSetupGpio() == -1)
+			return 1;
+			while (1) {
+				read_dht_data();
+				delay(2000);
+			}
+			return 0;
+		}
+	\end{lstlisting}
+	
+	\section{Conclusion}
+	The DHT sensor offers a compact and easy-to-use solution for measuring environmental temperature and humidity, making it perfect for Raspberry Pi-based monitoring systems.
+	
+\end{document}

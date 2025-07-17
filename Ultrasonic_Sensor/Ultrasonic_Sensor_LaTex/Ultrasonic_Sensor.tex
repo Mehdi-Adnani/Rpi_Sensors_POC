@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{margin=1in}
+\title{Ultrasonic Sensor Documentation - Raspberry Pi 5 Integration}
+\author{El Mehdi Adnani Kadmiri}
+\date{July 17, 2025}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Description}
+	The Ultrasonic Sensor (e.g., HC-SR04) uses ultrasonic sound waves to measure the distance between the sensor and an object. It sends out a sound pulse at 40kHz and measures the time taken for the echo to return. This time is then used to calculate distance using the speed of sound.
+	
+	\section{Applications}
+	\begin{itemize}
+		\item Distance measurement
+		\item Obstacle detection in robotics
+		\item Liquid level sensing
+		\item Smart parking and automation systems
+	\end{itemize}
+	
+	\section{Working Principle}
+	The sensor has two main pins:
+	\begin{itemize}
+		\item \textbf{Trigger (TRIG)}: Sends an ultrasonic burst (10µs pulse).
+		\item \textbf{Echo (ECHO)}: Receives the reflected wave and outputs a pulse proportional to distance.
+	\end{itemize}
+	Using the time between sending and receiving, distance is calculated with:
+	\[
+	\text{Distance (cm)} = \frac{\text{Time (µs)} \times 0.0343}{2}
+	\]
+	
+	\section{Wiring Diagram}
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Ultrasonic Pin} & \textbf{Raspberry Pi Pin} & \textbf{Function} \\
+			\hline
+			VCC & 5V & Power \\
+			GND & GND & Ground \\
+			TRIG & GPIO23 & Output Trigger Signal \\
+			ECHO & GPIO24 & Input Echo Signal \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\section{Libraries Used}
+	\subsection*{Python: RPi.GPIO}
+	\begin{itemize}
+		\item Setup with: \texttt{import RPi.GPIO as GPIO}, \texttt{import time}
+		\item Configure mode: \texttt{GPIO.setmode(GPIO.BCM)}
+		\item Trigger pulse: \texttt{GPIO.output(TRIG, True)}
+		\item Read echo: \texttt{GPIO.input(ECHO)}
+	\end{itemize}
+	
+	\subsection*{C: wiringPi}
+	\begin{itemize}
+		\item Initialize GPIO: \texttt{wiringPiSetupGpio();}
+		\item Set pins: \texttt{pinMode(TRIG, OUTPUT)}, \texttt{pinMode(ECHO, INPUT)}
+		\item Control and read: \texttt{digitalWrite()}, \texttt{digitalRead()}, \texttt{micros()}
+	\end{itemize}
+	
+	\section{Python Code Example}
+	\begin{lstlisting}[language=Python]
+		import RPi.GPIO as GPIO
+		import time
+		
+		TRIG = 23
+		ECHO = 24
+		
+		GPIO.setmode(GPIO.BCM)
+		GPIO.setup(TRIG, GPIO.OUT)
+		GPIO.setup(ECHO, GPIO.IN)
+		
+		GPIO.output(TRIG, False)
+		time.sleep(2)
+		
+		GPIO.output(TRIG, True)
+		time.sleep(0.00001)
+		GPIO.output(TRIG, False)
+		
+		while GPIO.input(ECHO) == 0:
+		pulse_start = time.time()
+		
+		while GPIO.input(ECHO) == 1:
+		pulse_end = time.time()
+		
+		pulse_duration = pulse_end - pulse_start
+		distance = (pulse_duration * 34300) / 2
+		
+		print("Distance: %.2f cm" % distance)
+		GPIO.cleanup()
+	\end{lstlisting}
+	
+	\section{C Code Example}
+	\begin{lstlisting}[language=C]
+		#include <wiringPi.h>
+		#include <stdio.h>
+		#include <stdlib.h>
+		#include <sys/time.h>
+		
+		#define TRIG 23
+		#define ECHO 24
+		
+		long getMicroseconds() {
+			struct timeval tv;
+			gettimeofday(&tv, NULL);
+			return tv.tv_sec * 1000000 + tv.tv_usec;
+		}
+		
+		int main(void) {
+			if (wiringPiSetupGpio() == -1)
+			return 1;
+			
+			pinMode(TRIG, OUTPUT);
+			pinMode(ECHO, INPUT);
+			
+			digitalWrite(TRIG, LOW);
+			delay(500);
+			
+			digitalWrite(TRIG, HIGH);
+			delayMicroseconds(10);
+			digitalWrite(TRIG, LOW);
+			
+			while (digitalRead(ECHO) == LOW);
+			long start = getMicroseconds();
+			
+			while (digitalRead(ECHO) == HIGH);
+			long end = getMicroseconds();
+			
+			long duration = end - start;
+			float distance = duration * 0.0343 / 2;
+			
+			printf("Distance: %.2f cm\n", distance);
+			return 0;
+		}
+	\end{lstlisting}
+	
+	\section{Conclusion}
+	The Ultrasonic Sensor provides accurate, non-contact distance measurement and is widely used in robotics. With basic GPIO and timing functions, it integrates well with the Raspberry Pi using both Python and C.
+	
+\end{document}
