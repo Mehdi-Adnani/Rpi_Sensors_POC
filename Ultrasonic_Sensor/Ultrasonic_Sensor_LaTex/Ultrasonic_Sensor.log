@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.18)  22 JUL 2025 10:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.3.18)  22 JUL 2025 10:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**IR_Sensor.tex
-(./IR_Sensor.tex
+**Ultrasonic_Sensor.tex
+(./Ultrasonic_Sensor.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22>
 (/app/texlive/texmf-dist/tex/latex/base/article.cls
@@ -412,25 +412,93 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutvoffset=\dimen279
 \Gm@dimlist=\toks31
 )
+(/app/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2022/04/08 v2.17n AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+(/app/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/app/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks32
+\ex@=\dimen280
+))
+(/app/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen281
+)
+(/app/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count287
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count288
+\leftroot@=\count289
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count290
+\DOTSCASE@=\count291
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box63
+\strutbox@=\box64
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen282
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count292
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count293
+\dotsspace@=\muskip16
+\c@parentequation=\count294
+\dspbrk@lvl=\count295
+\tag@help=\toks33
+\row@=\count296
+\column@=\count297
+\maxfields@=\count298
+\andhelp@=\toks34
+\eqnshift@=\dimen283
+\alignsep@=\dimen284
+\tagshift@=\dimen285
+\tagwidth@=\dimen286
+\totwidth@=\dimen287
+\lineht@=\dimen288
+\@envbody=\toks35
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks36
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
 (/app/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count287
-\lst@gtempboxa=\box63
-\lst@token=\toks32
-\lst@length=\count288
-\lst@currlwidth=\dimen280
-\lst@column=\count289
-\lst@pos=\count290
-\lst@lostspace=\dimen281
-\lst@width=\dimen282
-\lst@newlines=\count291
-\lst@lineno=\count292
-\lst@maxwidth=\dimen283
+\lst@mode=\count299
+\lst@gtempboxa=\box65
+\lst@token=\toks37
+\lst@length=\count300
+\lst@currlwidth=\dimen289
+\lst@column=\count301
+\lst@pos=\count302
+\lst@lostspace=\dimen290
+\lst@width=\dimen291
+\lst@newlines=\count303
+\lst@lineno=\count304
+\lst@maxwidth=\dimen292
 
 (/app/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count293
-\lst@skipnumbers=\count294
-\lst@framebox=\box64
+\c@lstnumber=\count305
+\lst@skipnumbers=\count306
+\lst@framebox=\box66
 )
 (/app/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
@@ -439,39 +507,40 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 
 (/app/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count295
-\l__pdf_internal_box=\box65
+\l__color_backend_stack_int=\count307
+\l__pdf_internal_box=\box67
 )
-(./IR_Sensor.aux)
-\openout1 = `IR_Sensor.aux'.
+(./Ultrasonic_Sensor.aux)
+\openout1 = `Ultrasonic_Sensor.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
- (/app/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+
+(/app/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count296
-\scratchdimen=\dimen284
-\scratchbox=\box66
-\nofMPsegments=\count297
-\nofMParguments=\count298
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count299
-\MPscratchDim=\dimen285
-\MPnumerator=\count300
-\makeMPintoPDFobject=\count301
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count308
+\scratchdimen=\dimen293
+\scratchbox=\box68
+\nofMPsegments=\count309
+\nofMParguments=\count310
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count311
+\MPscratchDim=\dimen294
+\MPnumerator=\count312
+\makeMPintoPDFobject=\count313
+\everyMPtoPDFconversion=\toks39
 ) (/app/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -515,54 +584,59 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count302
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 26.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 26.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 26.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 47.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 47.
+\c@lstlisting=\count314
 [1
 
 {/app/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/app/texlive/texmf-
 dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 (/app/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
-)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 117.
-
+) [2]
 (/app/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 (/app/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-) [2] [3]
-(./IR_Sensor.aux) ) 
+)
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
+44.
+
+(/app/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 144.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
+52.
+
+(/app/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 152.
+ [3] [4]
+(./Ultrasonic_Sensor.aux) ) 
 Here is how much of TeX's memory you used:
- 30833 strings out of 476041
- 779601 string characters out of 5793174
- 1998388 words of memory out of 6000000
- 51001 multiletter control sequences out of 15000+600000
- 518124 words of font info for 52 fonts, out of 8000000 for 9000
+ 31635 strings out of 476041
+ 790378 string characters out of 5793174
+ 1896388 words of memory out of 6000000
+ 51781 multiletter control sequences out of 15000+600000
+ 518851 words of font info for 55 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 102i,6n,104p,420b,1725s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
-10.pfb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></app
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></app/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></app/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></app/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr8.pfb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-tt10.pfb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></ap
-p/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on IR_Sensor.pdf (3 pages, 131593 bytes).
+ 102i,6n,104p,428b,1731s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</app/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.p
+fb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></app/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></app/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></app/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr17.pfb></app/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr8.pfb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></app/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></app/t
+exlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on Ultrasonic_Sensor.pdf (4 pages, 143215 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

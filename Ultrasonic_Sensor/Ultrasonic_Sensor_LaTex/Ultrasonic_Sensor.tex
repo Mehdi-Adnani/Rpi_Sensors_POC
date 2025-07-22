@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{circuitikz}
 \usepackage{geometry}
 \usepackage{amsmath}
 \usepackage{listings}
@@ -16,13 +18,18 @@
 	\section{Description}
 	The Ultrasonic Sensor (e.g., HC-SR04) uses ultrasonic sound waves to measure the distance between the sensor and an object. It sends out a sound pulse at 40kHz and measures the time taken for the echo to return. This time is then used to calculate distance using the speed of sound.
 	
-	\section{Applications}
-	\begin{itemize}
-		\item Distance measurement
-		\item Obstacle detection in robotics
-		\item Liquid level sensing
-		\item Smart parking and automation systems
-	\end{itemize}
+\section{Applications}
+
+Ultrasonic sensors, such as the HC-SR04, are widely used in real-world scenarios where accurate, non-contact distance measurement is required. Their ability to detect objects using sound waves makes them ideal for various fields, including:
+
+\begin{itemize}
+	\item \textbf{Obstacle Detection:} Used in robotics and automation systems to detect and avoid objects.
+	\item \textbf{Parking Assistance:} Commonly integrated into car bumpers to help drivers detect nearby obstacles while parking.
+	\item \textbf{Liquid Level Monitoring:} Helps monitor fluid levels in tanks without direct contact, preserving sensor lifespan and hygiene.
+	\item \textbf{Smart Waste Management:} Measures fill levels in garbage bins and sends data to optimize collection routes.
+	\item \textbf{Industrial Automation:} Detects presence or absence of components on assembly lines to trigger actions.
+\end{itemize}
+
 	
 	\section{Working Principle}
 	The sensor has two main pins:
@@ -47,6 +54,41 @@
 			ECHO & GPIO24 & Input Echo Signal \\
 			\hline
 		\end{tabular}
+	\end{center}
+	\begin{center}
+		\begin{tikzpicture}
+			
+			% Raspberry Pi rectangle
+			\draw[thick] (0,0) rectangle (4,5);
+			\node at (2,5.3) {\textbf{Raspberry Pi 5}};
+			
+			% Sensor pin labels and dots
+			\node[anchor=east] at (7,4.7) {VCC};
+			\node[anchor=east] at (7,3.7) {GND};
+			\node[anchor=west] at (4,2.7) {GPIO23 (Trigger)};
+			\node[anchor=west] at (4.2,1.7) {GPIO24 (Echo)};
+			\fill (4,4.5) circle (2pt); 
+			\fill (4,3.5) circle (2pt);
+			\fill (4,2.5) circle (2pt); 
+			\fill (4,1.5) circle (2pt);
+			
+			% Ultrasonic sensor rectangle
+			\draw[thick] (7,1) rectangle (9,4.8);
+			\node at (8,5.1) {\textbf{HC-SR04 Sensor}};
+			
+			
+			\fill (7,4.5) circle (2pt);
+			\fill (7,3.5) circle (2pt);
+			\fill (7,2.5) circle (2pt);
+			\fill (7,1.5) circle (2pt);
+			
+			% Connecting wires
+			\draw[red, thick] (4,4.5) -- (7,4.5) node[midway, above] {\footnotesize Power};
+			\draw[black, thick] (4,3.5) -- (7,3.5) node[midway, above] {\footnotesize Ground};
+			\draw[blue, thick] (4,2.5) -- (7,2.5) node[midway, below] {\footnotesize Trigger};
+			\draw[green, thick] (4,1.5) -- (7,1.5) node[midway, below] {\footnotesize Echo};
+			
+		\end{tikzpicture}
 	\end{center}
 	
 	\section{Libraries Used}

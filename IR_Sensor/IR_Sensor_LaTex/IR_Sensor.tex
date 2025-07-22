@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{circuitikz}
 \usepackage{geometry}
+\geometry{margin=1in}
 \usepackage{listings}
 \usepackage{xcolor}
 \geometry{margin=1in}
@@ -51,6 +54,46 @@
 			\hline
 		\end{tabular}
 	\end{center}
+	
+		\begin{center}
+		\begin{tikzpicture}
+			
+			% Raspberry Pi rectangle
+			\draw[thick] (0,0) rectangle (4,5);
+			\node at (2,5.3) {\textbf{Raspberry Pi 5}};
+			\node[anchor=east] at (3.9,4.5) {VCC};
+			\node[anchor=east] at (3.9,3.5) {GND};
+			\node[anchor=east] at (3.9,2.5) {GPIO17};
+			% GPIO pins
+			
+			\fill (3.9,4.5) circle (2pt); % 3.3V
+			\fill (3.9,3.5) circle (2pt); % GND
+			\fill (3.9,2.5) circle (2pt);
+			\fill (3.9,1.5) circle (2pt);
+			\fill (3.9,0.5) circle (2pt);
+			 
+			 
+			
+			% IR Sensor rectangle
+			\draw[thick] (7,2) rectangle (9,4);
+			\node at (8,4.3) {\textbf{IR Sensor}};
+			% Sensor pins
+			\node[anchor=east] at (7,4.2) {VCC};
+			\node[anchor=east] at (7,3.4) {GND};
+			\node[anchor=east] at (7,2.5) {OUT};
+			% Dots for sensor pins
+			\fill (7,3.8) circle (2pt); % VCC
+			\fill (7,3.0) circle (2pt); % GND
+			\fill (7,2.2) circle (2pt); % OUT
+			
+			% Connecting lines
+			\draw[red, thick] (3.9,4.5) -- (7,3.8) node[midway, above] {\footnotesize Power};
+			\draw[black, thick] (3.9,3.5) -- (7,3.0) node[midway, above] {\footnotesize Ground};
+			\draw[blue, thick] (3.9,2.5) -- (7,2.2) node[midway, below] {\footnotesize Signal};
+			
+		\end{tikzpicture}
+		\end{center}
+		
 	
 	\section{Libraries Used}
 	\subsection*{Python: RPi.GPIO}

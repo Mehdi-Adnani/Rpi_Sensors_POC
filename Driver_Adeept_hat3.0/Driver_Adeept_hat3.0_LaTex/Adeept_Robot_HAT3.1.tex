@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{margin=1in}
+\usepackage{graphicx}
+\title{Adeept Robot HAT V3.1 driver - Raspberry Pi 5 Integration}
+\author{El Mehdi Adnani Kadmiri}
+\date{July 21, 2025}
+
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	stringstyle=\color{teal},
+	breaklines=true,
+	frame=single,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+\begin{document}
+	\maketitle
+	\section{Description}
+	The Adeept Robot HAT V3.1 is a motor and sensor driver HAT that supports Raspberry Pi 5, Pi 4, and Pi 3 models. The board features a bunch of headers that give access to sensor and motor controllers including 16 servo motor ports, a 3-CH line tracking sensor, an ultrasonic sensor, IR receivers, WS2812 RGB LEDs, and more. Additionally, the board features an integrated 8.4V battery charger with a USB-C port for charging.
+	Adeept Robot HAT V3.1 is a robot driver board and must be used in conjunction with a Raspberry Pi. Compatible with Raspberry Pi 5/4B/3B/3B+.
+	
+	\section{Real-Life Applications of the Adeept Robot HAT V3.1}
+	
+	The Adeept Robot HAT V3.0 is a versatile robotics driver board designed for the Raspberry Pi. It integrates essential components such as motor drivers, servo and sensor interfaces, and power management circuitry. While it is commonly used in educational and hobbyist robotics projects, its capabilities extend to real-world applications as well.
+	
+	\subsection*{Educational and Experimental Use: Mars Rover Smart Car}
+	
+	In this project, the Adeept Robot HAT V3.1 is used to power and control a Mars rover–style smart car. This use case demonstrates its ability to:
+	\begin{itemize}
+		\item Drive multiple DC motors and servos for mobility and actuation.
+		\item Interface with various sensors like IR, ultrasonic, and temperature modules.
+		\item Enable real-time decision-making and pathfinding through the Raspberry Pi.
+	\end{itemize}
+	Such applications are critical in prototyping planetary exploration vehicles or autonomous mobile systems for rugged terrain.
+	
+	\subsection*{Industrial and Real-Life Applications}
+	
+	Beyond educational robotics, the Robot HAT V3.0 can be adapted for several practical applications:
+	\begin{itemize}
+		\item \textbf{Factory Automation:} Controlling small conveyor belts, robotic arms, and sensors in lightweight automated assembly or inspection systems.
+		\item \textbf{Agricultural Robotics:} Powering autonomous field vehicles that perform crop monitoring, soil sampling, or irrigation management using onboard sensors and motor controls.
+		\item \textbf{Warehouse Systems:} Enabling mobile robots for inventory transport, navigation, and collision avoidance in smart warehouses or logistics centers.
+		\item \textbf{Smart Surveillance and Patrol Bots:} Providing mobility and sensor interfacing for autonomous surveillance units in office buildings or campuses.
+	\end{itemize}
+	
+	These scenarios benefit from the HAT's compact design, GPIO compatibility, and ease of integration with Raspberry Pi–based control systems.
+	\section{Specifications}
+	\begin{itemize}
+		\item HAT Name – Adeept Robot HAT V3.1
+		\begin{itemize}
+			\item Interfaces and Ports
+			RGB LED
+			\begin{itemize}
+				\item 2x RGB LED ports
+				\item 2x WS2812 RGB LEDs onboard 
+				\item 1x WS2812 extension header
+				
+			\end{itemize}
+			
+			\item Sensor Interface
+			\begin{itemize}
+				\item 3-CH Line following sensor port
+				\item Ultrasonic range sensor port
+				\item 	MPU6050 6-axis (gyro + accelerometer) port
+				\item Light tracing sensor port
+				\item IR receiver
+			\end{itemize}
+			
+			\item Motor Drivers
+			\begin{itemize}
+				\item 4x High power DC motor driver
+				\item 16x Servo motor driver with PCA9685
+			\end{itemize}
+			
+			
+			\item Communication
+			\begin{itemize}
+				\item 1x UART port for communication and debug
+				\item 1x I2C interface port
+				\item USB- 1x USB-C port for charging only
+			\end{itemize}
+			
+			
+			
+			\item Misc
+			\begin{itemize}
+				\item 1x Onboard battery level indicator
+				\item 1x Buzzer
+				\item 6x ADC
+				\item 1x Integrated DC-DC converter
+			\end{itemize}
+			\item Power – 1x 8.4V battery power input port with charger
+		\end{itemize}
+	\end{itemize}	
+	
+	\section{Conclusion}
+	The Adeept Robot HAT V3.1 stands out as a powerful and flexible robotics expansion board for the Raspberry Pi. Its built-in motor drivers, servo and sensor interfaces, and efficient power management make it an ideal platform for prototyping and deploying mobile robotics solutions.
+	
+	In this project, it enables the core functionality of a Mars rover–style smart car, supporting autonomous navigation, sensor feedback processing, and actuation. Its real-world applicability extends beyond the classroom, offering potential in industrial automation, agricultural robotics, warehouse logistics, and smart surveillance systems.
+	
+	Thanks to its compatibility with Python and Raspberry Pi GPIO libraries, the Robot HAT V3.1 bridges the gap between beginner-friendly experimentation and robust robotics development.
+	
+	
+\end{document}

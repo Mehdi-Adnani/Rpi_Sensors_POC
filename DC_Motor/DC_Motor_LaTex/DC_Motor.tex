@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{margin=1in}
+\title{DC Motor Documentation - Raspberry Pi 5 Integration}
+\author{El Mehdi Adnani Kadmiri}
+\date{July 21, 2025}
+
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	stringstyle=\color{teal},
+	breaklines=true,
+	frame=single,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Description}
+	A \textbf{DC Motor} (Direct Current Motor) is a simple electric motor that runs on direct current electricity. It converts electrical energy into mechanical motion. When voltage is applied to the motor terminals, it generates torque and rotation.
+	
+	DC motors are widely used for their simplicity, low cost, and ability to run at variable speeds. They can be controlled using a motor driver like the L298N or an H-bridge circuit that handles the higher current required by the motor.
+	
+	\section{Applications}
+	\begin{itemize}
+		\item \textbf{Robotic Wheels:} Used for locomotion in robotic platforms.
+		\item \textbf{Conveyor Belts:} Employed in manufacturing and sorting systems.
+		\item \textbf{Automated Mechanisms:} Useful in fans, pumps, and small appliances.
+	\end{itemize}
+	
+	\section{Working Principle}
+	A DC motor works based on the interaction between a magnetic field and a current-carrying conductor. When current flows through the armature inside the magnetic field, it experiences a force (Lorentz force) causing rotation.
+	
+	Controlling a DC motor from the Raspberry Pi usually requires:
+	\begin{itemize}
+		\item A motor driver like \textbf{L298N} to handle high current
+		\item \textbf{PWM} signals to adjust speed
+		\item GPIO logic to control direction
+	\end{itemize}
+	
+	\section{Wiring Diagram}
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{L298N Pin} & \textbf{Raspberry Pi Pin} & \textbf{Function} \\
+			\hline
+			IN1 & GPIO17 & Direction Control \\
+			IN2 & GPIO27 & Direction Control \\
+			ENA & GPIO18 & PWM Speed Control \\
+			VCC & External 12V & Motor Power \\
+			GND & GND & Common Ground \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\section{Libraries Used}
+	\subsection*{Python: RPi.GPIO}
+	\texttt{RPi.GPIO} provides control over GPIO pins and can generate PWM signals for speed control.
+	
+	\begin{itemize}
+		\item Import: \texttt{import RPi.GPIO as GPIO}
+		\item Setup: \texttt{GPIO.setmode(GPIO.BCM)}
+		\item Set pin mode: \texttt{GPIO.setup(pin, GPIO.OUT)}
+		\item PWM: \texttt{GPIO.PWM(pin, frequency)}
+	\end{itemize}
+	
+	\subsection*{C: wiringPi + softPwm}
+	\texttt{wiringPi} and \texttt{softPwm} provide GPIO and PWM functions in C.
+	
+	\begin{itemize}
+		\item Setup: \texttt{wiringPiSetup()}
+		\item Direction: \texttt{pinMode(pin, OUTPUT)}
+		\item PWM: \texttt{softPwmCreate(pin, value, range)}
+	\end{itemize}
+	
+	\section{Python Example}
+	\begin{lstlisting}[language=Python]
+		import RPi.GPIO as GPIO
+		import time
+		
+		IN1 = 17
+		IN2 = 27
+		ENA = 18
+		
+		GPIO.setmode(GPIO.BCM)
+		GPIO.setup(IN1, GPIO.OUT)
+		GPIO.setup(IN2, GPIO.OUT)
+		GPIO.setup(ENA, GPIO.OUT)
+		
+		pwm = GPIO.PWM(ENA, 1000)  # 1kHz PWM
+		pwm.start(50)  # 50% speed
+		
+		try:
+		GPIO.output(IN1, GPIO.HIGH)
+		GPIO.output(IN2, GPIO.LOW)
+		time.sleep(5)
+		except KeyboardInterrupt:
+		pass
+		
+		pwm.stop()
+		GPIO.cleanup()
+	\end{lstlisting}
+	
+	\section{C Example}
+	\begin{lstlisting}[language=C]
+		#include <wiringPi.h>
+		#include <softPwm.h>
+		#include <stdio.h>
+		
+		#define IN1 0 // GPIO17
+		#define IN2 2 // GPIO27
+		#define ENA 1 // GPIO18
+		
+		int main(void) {
+			wiringPiSetup();
+			
+			pinMode(IN1, OUTPUT);
+			pinMode(IN2, OUTPUT);
+			softPwmCreate(ENA, 0, 100);
+			
+			digitalWrite(IN1, HIGH);
+			digitalWrite(IN2, LOW);
+			softPwmWrite(ENA, 50); // 50% speed
+			
+			delay(5000); // Run motor for 5 seconds
+			
+			softPwmWrite(ENA, 0);
+			return 0;
+		}
+	\end{lstlisting}
+	
+	\section{Conclusion}
+	The DC motor is a versatile component suitable for many motion-based applications. When combined with an L298N driver and GPIO/PWM control, it can be precisely managed from the Raspberry Pi using either Python or C.
+\end{document}
